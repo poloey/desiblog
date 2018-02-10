@@ -49,16 +49,22 @@ foreach($categories as $category) {
 foreach(range(1, 50) as $i) {
   Post::insert([
     'title' => $faker->sentence,
-    'content' => $faker->paragraph(50),
+    'content' => $faker->paragraph(30),
     'user_id' => rand(1, 5),
-    'category_id' => rand(1, count($categories))
+    'category_id' => rand(1, count($categories)),
+    'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+    'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
 
   ]);
 }
 
-
-
-
-
-
-
+foreach(range(1, 400) as $i) {
+  Comment::insert([
+    'name' => $faker->name,
+    'email' => $faker->email,
+    'post_id' => rand(1, 50),
+    'text' => $faker->paragraph(2),
+    'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+    'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+  ]);
+}
